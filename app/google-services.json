@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131637140173",
+    "project_id": "pyq-s-lu",
+    "storage_bucket": "pyq-s-lu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131637140173:android:4c0a8eb6488b2adf89a784",
+        "android_client_info": {
+          "package_name": "com.example.eadevelops.pyqslu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp0pur85MKjAtZHQua19NJH3lAE7HBX68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">PYQs LU</string>
+    <string name="title_home">Home</string>
+    <string name="title_post">Post</string>
+    <string name="title_notice">Notice</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="old_account">Already have an account,</string>
+    <string name="verified_account">or have verified your email?</string>
+    <string name="login">Login</string>
+    <string name="new_user">Don\'t have an account?</string>
+    <string name="signup">Signup</string>
+    <string name="view_profile">View Profile</string>
+    <string name="nav_open">Open Navigation Drawer</string>
+    <string name="nav_close">Close Navigation Drawer</string>
+    <string name="bio">Your bio here</string>
+    <string name="course">Your course here</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="time">Time</string>
+    <string name="change_dp">Change profile picture</string>
+    <string name="insta">Instagram Url here</string>
+    <string name="update">Update</string>
+    <string name="upload_post">Upload a post</string>
+    <string name="upload_notice">Upload a notice</string>
+    <string name="pyq">Upload a previous year paper</string>
+    <string name="disclaimer">Your post may appear in other\'s feeds and can be seen under the post section and also on your profile page</string>
+    <string name="disclaimer_notice">This notice may appear in other\'s feeds and can be seen under the notice section below and also on your profile page</string>
+    <string name="post">Post</string>
+    <string name="cancel">Cancel</string>
+    <string name="caption">Write a caption</string>
+    <string name="notice"><b><u>NOTICE</u></b></string>
+    <string name="post_dialog_profile_section">Do you have something to tell everyone?</string>
+    <string name="your_posts">Your Posts:</string>
+    <string name="course_text">Course</string>
+    <string name="branch_text">Branch</string>
+    <string name="type_text">Type</string>
+    <string name="semester_text">Enter Semester Number</string>
+    <string name="show_all">Show All</string>
+    <string name="get">Get</string>
+    <string name="subject_text">Enter Subject Name</string>
+    <string name="pdf_file">Choose file</string>
+    <string name="no_file_selected">No File selected</string>
+    <string name="enter_year">Enter Current Year</string>
+    <string name="upload">Upload</string>
+    <string name="connect_with_me"><b>Connect with me</b></string>
+    <string name="my_instagram">My Instagram here</string>
+    <string name="my_linkedin">My LinkedIn here</string>
+    <string name="thank_you"><b>Thank you for being a part of our community, and happy studying!</b></string>
+    <string name="about_us_1"><u><b>Welcome to our app!</b></u>\n\n
+    As a BCA student, I understand the challenges and struggles that students face during their academic
+        journey. That\'s why I\'ve created this app as a way to give back something to my juniors and fellow students to ease their life.\n\n
+    Now, you don\'t need to be a part of different WhatsApp and Telegram groups to be aware of what\'s going on in our college.
+        This app is designed to be a one-stop destination for all your academic needs.Whether you\'re looking for updates, notices, or previous year papers, you\'ll find everything you need right here.
+        With different sections dedicated to each aspect of student life, you can easily navigate through the app and access the information you need.\n\n
+    In the <b>Home</b> section, you\'ll find the latest news and updates relevant to our academic community.
+        Stay informed about important events, fests, updates that you might not want to miss.\n\n
+        The <b>Notices</b> section provides a platform for sharing important notices and announcements with your peers. Whether it\'s information about upcoming exams,
+        schedule changes, or holiday notices, you\'ll find it all here.\n\n
+        One of the most valuable features of our app is the <b>Previous Year Papers</b> section. Here, you can access a comprehensive collection of previous year question
+        papers to help you prepare for your exams. By reviewing past exam papers, you can familiarize yourself with the exam format, understand the types of questions asked,
+        and identify areas where you may need to focus your studies.\n\n
+        But our app is more than just a repository of information. It\'s a community where students can connect, collaborate, and support each other in their academic journey.
+        You can share posts, notices, and previous year papers with your peers, helping them succeed along with you.
+    Building this app has been my biggest project so far, and I\'ve learned a lot along the way.
+        From designing the user interface to implementing the backend functionality, every aspect of this app has been a valuable learning experience.
+    I hope that you find this app helpful and that it enhances your academic experience as much as it has mine.\n</string>
+
+
+    <string-array name="Course">
+        <item>BBA </item>
+        <item>BCA </item>
+        <item>B.Pharma </item>
+        <item>B.Tech </item>
+        <item>MBA </item>
+    </string-array>
+
+    <string-array name="Branch">
+        <item>Not Applicable </item>
+        <item>A.I. Engineering </item>
+        <item>Civil Engineering </item>
+        <item>Computer Science Engineering </item>
+        <item>Electrical Engineering </item>
+        <item>Mechanical Engineering </item>
+    </string-array>
+
+    <string-array name="Type">
+        <item>Mid_Sem-1 </item>
+        <item>Mid_Sem-2 </item>
+        <item>Make_Up Exam </item>
+        <item>End_Sem </item>
+    </string-array>
+</resources>
+
+
+
+

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    tools:context=".activities.drawer_activities.MyProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/hello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello, "
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/profile_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/email"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:src="@drawable/email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_email"
+            app:layout_constraintBottom_toBottomOf="@id/user_email"/>
+
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/e_mail"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/bio"
+            app:layout_constraintStart_toEndOf="@id/email"/>
+
+        <ImageView
+            android:id="@+id/course_icon"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:src="@drawable/learning"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/course"
+            app:layout_constraintBottom_toBottomOf="@id/course"/>
+
+        <TextView
+            android:id="@+id/course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/course"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/user_email"
+            app:layout_constraintStart_toEndOf="@id/course_icon"/>
+
+        <ImageView
+            android:id="@+id/insta_icon"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:src="@drawable/instagram"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/insta"
+            app:layout_constraintBottom_toBottomOf="@id/insta"/>
+
+        <TextView
+            android:id="@+id/insta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/insta"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/course"
+            app:layout_constraintStart_toEndOf="@id/insta_icon"/>
+
+        <TextView
+            android:id="@+id/bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bio"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/user_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lavender"
+            android:text="@string/edit_profile"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/insta"
+            app:layout_constraintEnd_toEndOf="@id/user_image"
+            app:layout_constraintStart_toStartOf="@id/user_image"/>
+
+        <ImageView
+            android:id="@+id/post_option"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/bg"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_profile"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_layout_2"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="@id/post_option"
+            app:layout_constraintStart_toStartOf="@id/post_option">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/camera"/>
+
+                <TextView
+                    android:id="@+id/post_option_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/white"
+                    android:text="@string/upload_post"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/post_option_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:text="@string/post_dialog_profile_section"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/your_posts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/your_posts"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_2"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/your_posts"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/notice_item"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
