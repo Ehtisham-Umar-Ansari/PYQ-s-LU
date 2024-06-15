@@ -30,6 +30,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/post_image_icon"
+            app:layout_constraintBottom_toBottomOf="@id/post_image_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/caption"
             android:layout_width="0dp"

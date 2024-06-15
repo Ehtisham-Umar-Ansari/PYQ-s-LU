@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eadevelops.pyqslu.adapters.PostItemAdapterOne
@@ -43,6 +44,8 @@ class HomeFragment : Fragment() {
             postList.sortBy { it.time }
             postList.reverse()
             adapter.notifyDataSetChanged()
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), it.localizedMessage?.toString(), Toast.LENGTH_LONG).show()
         }
 
         return binding.root

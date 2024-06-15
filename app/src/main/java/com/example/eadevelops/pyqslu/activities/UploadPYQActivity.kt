@@ -2,6 +2,7 @@ package com.example.eadevelops.pyqslu.activities
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -35,6 +36,7 @@ class UploadPYQActivity : AppCompatActivity() {
             binding.fileName.text = fileName.toString()
             binding.fileName.setTextColor(resources.getColor(R.color.green))
         }
+        binding.progressBar.visibility = View.GONE
     }
     private lateinit var storageReference : StorageReference
     private lateinit var dataBaseReference: DatabaseReference
@@ -69,30 +71,45 @@ class UploadPYQActivity : AppCompatActivity() {
         dataBaseReference = FirebaseDatabase.getInstance().reference.child(PDFs)
 
         binding.pdfDataUpload.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
+            pdfFileUri = null
             launcher.launch("application/pdf")
+            if(pdfFileUri == null){
+                binding.fileName.text = "No File selected"
+                binding.fileName.setTextColor(resources.getColor(R.color.red))
+            }
         }
 
         binding.upload.setOnClickListener {
             if(pdfFileUri != null){
+                binding.progressBar.visibility = View.VISIBLE
                 uploadPdf()
-                finish()
             }else
                 Toast.makeText(this, "Please Select a pdf file", Toast.LENGTH_SHORT).show()
         }
     }
 // This is the code to upload pdf to firebase.
     private fun uploadPdf(){
-        val fileName = binding.course.text.toString()+binding.branch.text.toString()+binding.type.text.toString()+binding
-            .sem.editText?.text.toString()+binding.subjectName.editText?.text.toString()+binding.year.editText?.text.toString()
 
-    val storage = Firebase.storage
-    val fileReference = storage.reference.child("$PDF_FOLDER/$fileName")
-    fileReference.metadata.addOnSuccessListener {
-        Toast.makeText(this, "PDF already Exist", Toast.LENGTH_SHORT).show()
-    }.addOnFailureListener {
-        uploadDoc(fileName)
-    }
+        if(binding.course.text.toString() == "" || binding.branch.text.toString() == "" || binding.type.text.toString() == "" ||
+            binding.sem.editText?.text.toString() == "" || binding.subjectName.editText?.text.toString() == "" ||
+            binding.year.editText?.text.toString() == ""){
 
+            Toast.makeText(this, "All fields required", Toast.LENGTH_SHORT).show()
+
+        }else{
+
+            val fileName = binding.course.text.toString()+binding.branch.text.toString()+binding.type.text.toString()+binding
+                .sem.editText?.text.toString()+binding.subjectName.editText?.text.toString()+binding.year.editText?.text.toString()
+
+            val storage = Firebase.storage
+            val fileReference = storage.reference.child("$PDF_FOLDER/$fileName")
+            fileReference.metadata.addOnSuccessListener {
+                Toast.makeText(this, "PDF already Exist", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                uploadDoc(fileName)
+            }
+        }
 }
 
     private fun uploadDoc(fileName: String) {
@@ -107,12 +124,14 @@ class UploadPYQActivity : AppCompatActivity() {
                     dataBaseReference.child(fileName).setValue(PDFFile).addOnCompleteListener {task->
                         if(task.isSuccessful){
                             Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                            finish()
                         }
                     }.addOnFailureListener {
                         Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+            binding.progressBar.visibility = View.GONE
         }
     }
 }

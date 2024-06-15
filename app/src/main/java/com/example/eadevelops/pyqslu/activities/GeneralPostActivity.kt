@@ -2,6 +2,8 @@ package com.example.eadevelops.pyqslu.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +38,7 @@ class GeneralPostActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.progressBar.visibility = View.GONE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +52,7 @@ class GeneralPostActivity : AppCompatActivity() {
         }
 
         binding.postImageIcon.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             launcher.launch("image/*")
         }
 
@@ -57,26 +61,31 @@ class GeneralPostActivity : AppCompatActivity() {
             finish()
         }
 
-        val isNotice = false
-
         binding.postButton.setOnClickListener {
-            Firebase.firestore.collection(USER_NODE).document().get().addOnSuccessListener {
-                var user = it.toObject<User>()
 
-                val post : Post = if (imageUrl == null){
-                    Post(binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
-                    !!.uid, System.currentTimeMillis().toString(), "post")
-                }else{
-                    Post(imageUrl!!, binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
-                    !!.uid, System.currentTimeMillis().toString(), "post")
-                }
+            if(imageUrl == null && binding.caption.editText?.text.toString() == ""){
+                Toast.makeText(this, "This post is empty", Toast.LENGTH_LONG).show()
+            }else{
+                binding.progressBar.visibility = View.VISIBLE
+                Firebase.firestore.collection(USER_NODE).document().get().addOnSuccessListener {
+                    it.toObject<User>()
 
-                // Setting code on firebase database
-                Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
-                    startActivity(Intent(this@GeneralPostActivity, MainActivity::class.java))
-                    finish()
+                    val post : Post = if (imageUrl == null){
+                        Post(binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
+                        !!.uid, System.currentTimeMillis().toString(), "post")
+                    }else{
+                        Post(imageUrl!!, binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
+                        !!.uid, System.currentTimeMillis().toString(), "post")
+                    }
+
+                    // Setting code on firebase database
+                    Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
+                        startActivity(Intent(this@GeneralPostActivity, MainActivity::class.java))
+                        finish()
+                    }
+                    binding.progressBar.visibility = View.GONE
+                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post)
                 }
-                Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post)
             }
         }
 

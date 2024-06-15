@@ -2,7 +2,9 @@ package com.example.eadevelops.pyqslu.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +40,7 @@ class NoticeActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.progressBar.visibility = View.GONE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +53,7 @@ class NoticeActivity : AppCompatActivity() {
             insets
         }
         binding.postImageIcon.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             launcher.launch("image/*")
         }
 
@@ -59,23 +63,29 @@ class NoticeActivity : AppCompatActivity() {
         }
 
         binding.postButton.setOnClickListener {
-            Firebase.firestore.collection(USER_NODE).document().get().addOnSuccessListener {
-                var user = it.toObject<User>()
+            if(imageUrl == null && binding.caption.editText?.text.toString() == ""){
+                Toast.makeText(this, "This post is empty", Toast.LENGTH_LONG).show()
+            }else{
+                binding.progressBar.visibility = View.VISIBLE
+                Firebase.firestore.collection(USER_NODE).document().get().addOnSuccessListener {
+                    var user = it.toObject<User>()
 
-                //Passing the value notice_tag here as passed in the Post Model
+                    //Passing the value notice_tag here as passed in the Post Model
 
-                val notice : Post = if (imageUrl == null){
-                    Post(binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
-                    !!.uid, System.currentTimeMillis().toString(), binding.noticeTag.text.toString())
-                }else{
-                    Post(imageUrl!!, binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
-                    !!.uid, System.currentTimeMillis().toString(), binding.noticeTag.text.toString())
+                    val notice : Post = if (imageUrl == null){
+                        Post(binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
+                        !!.uid, System.currentTimeMillis().toString(), binding.noticeTag.text.toString())
+                    }else{
+                        Post(imageUrl!!, binding.caption.editText?.text.toString(), FirebaseAuth.getInstance().currentUser
+                        !!.uid, System.currentTimeMillis().toString(), binding.noticeTag.text.toString())
+                    }
+                    Firebase.firestore.collection(NOTICE).document().set(notice).addOnSuccessListener {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+                    binding.progressBar.visibility = View.GONE
+                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(notice)
                 }
-                Firebase.firestore.collection(NOTICE).document().set(notice).addOnSuccessListener {
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                }
-                Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(notice)
             }
         }
     }

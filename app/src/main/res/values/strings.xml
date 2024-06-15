@@ -73,14 +73,14 @@
     <string-array name="Course">
         <item>BBA </item>
         <item>BCA </item>
-        <item>B.Pharma </item>
-        <item>B.Tech </item>
+        <item>B Pharma </item>
+        <item>B Tech </item>
         <item>MBA </item>
     </string-array>
 
     <string-array name="Branch">
         <item>Not Applicable </item>
-        <item>A.I. Engineering </item>
+        <item>A I Engineering </item>
         <item>Civil Engineering </item>
         <item>Computer Science Engineering </item>
         <item>Electrical Engineering </item>
@@ -88,10 +88,10 @@
     </string-array>
 
     <string-array name="Type">
-        <item>Mid_Sem-1 </item>
-        <item>Mid_Sem-2 </item>
-        <item>Make_Up Exam </item>
-        <item>End_Sem </item>
+        <item>Mid Sem-1 </item>
+        <item>Mid Sem-2 </item>
+        <item>Make Up Exam </item>
+        <item>End Sem </item>
     </string-array>
 </resources>
 
