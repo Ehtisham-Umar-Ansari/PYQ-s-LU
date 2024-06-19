@@ -68,7 +68,7 @@ class UploadPYQActivity : AppCompatActivity() {
         }
 
         storageReference = FirebaseStorage.getInstance().reference.child(PDF_FOLDER)
-        dataBaseReference = FirebaseDatabase.getInstance().reference.child(PDFs)
+        dataBaseReference = FirebaseDatabase.getInstance().reference.child(PDFs).child("PYQ")
 
         binding.pdfDataUpload.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
@@ -106,11 +106,12 @@ class UploadPYQActivity : AppCompatActivity() {
             val fileReference = storage.reference.child("$PDF_FOLDER/$fileName")
             fileReference.metadata.addOnSuccessListener {
                 Toast.makeText(this, "PDF already Exist", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
             }.addOnFailureListener {
                 uploadDoc(fileName)
             }
         }
-}
+    }
 
     private fun uploadDoc(fileName: String) {
         val mStorageRef = storageReference.child(fileName)

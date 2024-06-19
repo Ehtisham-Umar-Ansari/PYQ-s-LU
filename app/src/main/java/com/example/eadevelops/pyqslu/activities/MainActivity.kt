@@ -17,12 +17,15 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.eadevelops.pyqslu.R
 import com.example.eadevelops.pyqslu.activities.drawer_activities.AboutUsActivity
 import com.example.eadevelops.pyqslu.activities.drawer_activities.MyProfileActivity
+import com.example.eadevelops.pyqslu.activities.drawer_activities.NotesActivity
 import com.example.eadevelops.pyqslu.activities.drawer_activities.PYQsActivity
 import com.example.eadevelops.pyqslu.databinding.ActivityMainBinding
 import com.example.eadevelops.pyqslu.fragments.bottom_nav.AddFragment
 import com.example.eadevelops.pyqslu.fragments.bottom_nav.HomeFragment
 import com.example.eadevelops.pyqslu.fragments.bottom_nav.NoticeFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -74,13 +77,15 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_pyq -> openActivityDrawer(PYQsActivity())
+            R.id.nav_notes -> openActivityDrawer(NotesActivity())
             R.id.nav_about -> openActivityDrawer(AboutUsActivity())
             R.id.nav_uni_web -> openWeb("https://www.lkouniv.ac.in/")
             // to be filled when uploaded on play store
-            R.id.nav_share -> openWeb("")
+//            R.id.nav_share -> openWeb("")
             R.id.nav_logout -> {
                 AlertDialog.Builder(this).setMessage("Are you sure?")
                     .setPositiveButton("Logout") { _, _ ->
+                        Firebase.auth.signOut()
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
                     }.setNegativeButton("Cancel") { _, _ -> }

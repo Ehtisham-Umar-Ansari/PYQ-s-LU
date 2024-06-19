@@ -27,6 +27,7 @@
     <string name="upload_post">Upload a post</string>
     <string name="upload_notice">Upload a notice</string>
     <string name="pyq">Upload a previous year paper</string>
+    <string name="notes">Upload Subject notes</string>
     <string name="disclaimer">Your post may appear in other\'s feeds and can be seen under the post section and also on your profile page</string>
     <string name="disclaimer_notice">This notice may appear in other\'s feeds and can be seen under the notice section below and also on your profile page</string>
     <string name="post">Post</string>
@@ -39,6 +40,7 @@
     <string name="branch_text">Branch</string>
     <string name="type_text">Type</string>
     <string name="semester_text">Enter Semester Number</string>
+    <string name="unit_text">Enter Unit Number</string>
     <string name="show_all">Show All</string>
     <string name="get">Get</string>
     <string name="subject_text">Enter Subject Name</string>
@@ -71,10 +73,12 @@
 
 
     <string-array name="Course">
+        <item>BALLB </item>
         <item>BBA </item>
         <item>BCA </item>
         <item>B Pharma </item>
         <item>B Tech </item>
+        <item>LLB </item>
         <item>MBA </item>
     </string-array>
 
@@ -93,6 +97,7 @@
         <item>Make Up Exam </item>
         <item>End Sem </item>
     </string-array>
+
 </resources>
 
 

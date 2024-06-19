@@ -53,6 +53,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.login.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
         user = User()
@@ -85,9 +86,6 @@ class RegisterActivity : AppCompatActivity() {
                             .addOnCompleteListener {
 
                                 if (task.isSuccessful){
-                                    binding.userName.editText?.setText("")
-                                    binding.userEmail.editText?.setText("")
-                                    binding.userPassword.editText?.setText("")
                                     registerUser()
                                 } else {
                                     Toast.makeText(

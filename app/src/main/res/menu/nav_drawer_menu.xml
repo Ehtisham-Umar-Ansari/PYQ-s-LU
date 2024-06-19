@@ -11,13 +11,20 @@
             android:title="Search PYQs"/>
 
         <item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/notes_search"
+            android:title="Search Notes"/>
+
+        <item
             android:id="@+id/nav_uni_web"
             android:icon="@drawable/uni_web"
             android:title="LU's official page"/>
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/share"
-            android:title="Share"/>
+
+<!--        <item-->
+<!--            android:id="@+id/nav_share"-->
+<!--            android:icon="@drawable/share"-->
+<!--            android:title="Share"/>-->
+
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/information"
