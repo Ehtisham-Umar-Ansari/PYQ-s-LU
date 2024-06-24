@@ -5,14 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UploadPYQActivity">
+    tools:context=".activities.drawer_activities.PYQsActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutQues"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
         android:orientation="vertical"
         android:paddingTop="30dp"
         android:paddingBottom="30dp"

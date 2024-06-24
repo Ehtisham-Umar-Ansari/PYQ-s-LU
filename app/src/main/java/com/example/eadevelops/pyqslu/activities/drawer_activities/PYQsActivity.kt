@@ -45,7 +45,9 @@ class PYQsActivity : AppCompatActivity() {
         }
 
         binding.showAll.setOnClickListener {
-            startActivity(Intent(this, RetrievePYQ::class.java))
+            val intent = Intent(this, RetrievePYQ::class.java)
+                .putExtra("from", "PYQ")
+            startActivity(intent)
         }
 
         binding.get.setOnClickListener {
@@ -54,6 +56,7 @@ class PYQsActivity : AppCompatActivity() {
                 val intent = Intent(this, RetrievePYQ::class.java)
                 .putExtra("fileName", binding.course.text.toString()+binding.branch.text.toString()+
                         binding.type.text.toString()+binding.sem.editText?.text.toString())
+                .putExtra("from", "PYQ")
                 startActivity(intent)
             }else{
                 Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()

@@ -33,7 +33,7 @@ class NotesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_notes)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -41,20 +41,22 @@ class NotesActivity : AppCompatActivity() {
         }
 
         binding.showAll.setOnClickListener {
-            startActivity(Intent(this, RetrievePYQ::class.java))
+            val intent = Intent(this, RetrievePYQ::class.java)
+            intent.putExtra("from", "Notes")
+            startActivity(intent)
         }
 
         binding.get.setOnClickListener {
             if(binding.course.text.toString() != "" && binding.branch.text.toString() != ""
-                && binding.sem.editText?.text.toString() != "" && binding.unit.editText?.text.toString() != ""
-                /*&& binding.subjectName.editText?.text.toString() != ""*/){
+                && binding.sem.editText?.text.toString() != "" && binding.unit.editText?.text.toString() != ""){
                 val intent = Intent(this, RetrievePYQ::class.java)
                     .putExtra("fileName", binding.course.text.toString()+binding.branch.text.toString()+
                             binding.sem.editText?.text.toString()+binding.unit.editText?.text.toString()+
                             binding.subjectName.editText?.text.toString())
+                    .putExtra("from", "Notes")
                 startActivity(intent)
             }else{
-                Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Top four fields required", Toast.LENGTH_SHORT).show()
             }
         }
 

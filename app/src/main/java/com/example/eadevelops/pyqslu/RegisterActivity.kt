@@ -2,6 +2,9 @@ package com.example.eadevelops.pyqslu
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +19,7 @@ import com.example.eadevelops.pyqslu.utils.USER_NODE
 import com.example.eadevelops.pyqslu.utils.USER_PROFILE_FOLDER
 import com.example.eadevelops.pyqslu.utils.uploadImage
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,19 +28,23 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var user: User
-    private var launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        uri?.let {
-            uploadImage(uri, USER_PROFILE_FOLDER) {
-                user.image = it
-                binding.profileImage.setImageURI(uri)
-            }
-        }
-    }
+
+//    Launcher to open gallery
+
+//    private var launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+//        uri?.let {
+//            uploadImage(uri, USER_PROFILE_FOLDER) {url->
+//                user.image = url
+//                binding.profileImage.setImageURI(uri)
+//            }
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
 //        This code is for checking if the user is already logged in or not
-        if (FirebaseAuth.getInstance().currentUser != null) {
+        if (FirebaseAuth.getInstance().currentUser != null
+            && FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -51,11 +59,6 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        binding.login.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-
         user = User()
 
         binding.register.setOnClickListener {
@@ -66,36 +69,34 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(
                     this,
                     "Please fill in all the fields to register",
-                    Toast.LENGTH_SHORT
-                ).show()
+                    Toast.LENGTH_SHORT).show()
             } else {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.userEmail.editText?.text.toString(),
-                    binding.userPassword.editText?.text.toString().trim()
+                  binding.userEmail.editText?.text.toString(),
+                  binding.userPassword.editText?.text.toString().trim()
                 ).addOnCompleteListener { task ->
 
                     if (task.isSuccessful) {
 
-                        Toast.makeText(
-                            this,
-                            "Please verify your email",
-                            Toast.LENGTH_LONG
-                        ).show()
-
                         FirebaseAuth.getInstance().currentUser!!.sendEmailVerification()
-                            .addOnCompleteListener {
+                            .addOnCompleteListener {sendVerificationLink ->
 
-                                if (task.isSuccessful){
+                                if (sendVerificationLink.isSuccessful){
+                                    Toast.makeText(
+                                        this,
+                                        "Verification Email Sent",
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                     registerUser()
                                 } else {
                                     Toast.makeText(
                                         this,
-                                        task.exception?.localizedMessage,
+                                        sendVerificationLink.exception?.localizedMessage,
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
-
                             }
+
                     } else {
                         Toast.makeText(
                             this,
@@ -103,12 +104,31 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
+                    binding.verifyText.visibility = View.VISIBLE
+                    binding.verifyAgain.visibility = View.VISIBLE
+                    disableButtonFor30Seconds()
                 }
             }
+        }
 
-            binding.addImage.setOnClickListener {
-                launcher.launch("image/*")
-            }
+//        Some error while uploading dp. Not getting uploaded until the user presses start.
+
+//        binding.addImage.setOnClickListener {
+//            launcher.launch("image/*")
+//        }
+//
+//        binding.profileImage.setOnClickListener {
+//            launcher.launch("image/*")
+//        }
+
+        binding.login.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
+        binding.verifyAgain.setOnClickListener {
+            sendVerificationLink(FirebaseAuth.getInstance().currentUser!!)
         }
     }
 
@@ -122,4 +142,35 @@ class RegisterActivity : AppCompatActivity() {
             .set(user)
     }
 
+    private fun sendVerificationLink(user : FirebaseUser){
+        user.sendEmailVerification()
+            .addOnCompleteListener {sendVerificationLink ->
+
+                if (sendVerificationLink.isSuccessful){
+                    Toast.makeText(
+                        this,
+                        "Verification Email Sent",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        sendVerificationLink.exception?.localizedMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        disableButtonFor30Seconds()
+    }
+
+    private fun disableButtonFor30Seconds() {
+        binding.verifyAgain.isClickable = false
+        binding.verifyAgain.alpha = 0.5f
+
+        // Creating a Handler to re-enable the button after 30 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.verifyAgain.isClickable = true
+            binding.verifyAgain.alpha = 1.0f
+        }, 30000) // 30000 milliseconds = 30 seconds
+    }
 }

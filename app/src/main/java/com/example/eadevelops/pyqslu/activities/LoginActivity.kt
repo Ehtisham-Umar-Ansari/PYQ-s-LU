@@ -2,6 +2,8 @@ package com.example.eadevelops.pyqslu.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -43,40 +45,31 @@ class LoginActivity : AppCompatActivity() {
             if (binding.userEmail.editText?.text.toString() == "" ||
                 binding.userPassword.editText?.text.toString() == ""
             ) {
-                Toast.makeText(
-                    this,
-                    "Please fill in all the fields to register",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "All fields required",
+                    Toast.LENGTH_SHORT).show()
             } else {
-                val user = User(binding.userEmail.editText?.text.toString(), binding.userPassword.editText?.text.toString())
+                val user = User(binding.userEmail.editText?.text.toString(),
+                    binding.userPassword.editText?.text.toString())
 
                 Firebase.auth.signInWithEmailAndPassword(user.email!!, user.password!!)
                     .addOnCompleteListener{
                         if(it.isSuccessful){
                             if(FirebaseAuth.getInstance().currentUser!!.isEmailVerified){
-                                Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_SHORT)
-                                    .show()
+                                Toast.makeText(this@LoginActivity, "Login Successful",
+                                    Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this, MainActivity::class.java))
                                 finish()
                             }else{
-                                Toast.makeText(
-                                    this,
-                                    "Please Verify your email",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Firebase.auth.signOut()
+                                Toast.makeText(this, "Please Verify your email",
+                                    Toast.LENGTH_SHORT).show()
                             }
-
                         }else{
-                            Toast.makeText(
-                                this,
-                                it.exception?.localizedMessage,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this, it.exception?.localizedMessage,
+                                Toast.LENGTH_SHORT).show()
                         }
                     }
             }
         }
-
     }
 }

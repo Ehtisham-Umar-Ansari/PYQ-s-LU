@@ -21,12 +21,14 @@ firebaseAuth = "22.3.1"
 firebaseFirestore = "24.11.1"
 firebaseStorage = "20.3.0"
 picasso = "2.8"
+swiperefreshlayout = "1.1.0"
 timeago = "4.0.3"
 firebaseDatabase = "20.3.1"
 
 [libraries]
 android-pdf-viewer = { module = "com.github.barteksc:android-pdf-viewer", version.ref = "androidPdfViewer" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }

@@ -57,22 +57,22 @@ class EditProfileActivity : AppCompatActivity() {
 
                 binding.bio.editText?.setText(user.bio)
                 binding.course.editText?.setText(user.course)
-                binding.instaUrl.editText?.setText(user.instaUrl)
+                binding.instaName.editText?.setText(user.instaName)
 
                 Picasso.get().load(user.image).placeholder(R.drawable.profile_img).into(binding.userImage)
             }
 
         binding.update.setOnClickListener {
 
-            val bio = binding.bio.editText?.text.toString()
+            val bio  = binding.bio.editText?.text.toString()
             val course = binding.course.editText?.text.toString()
-            val instaUrl = binding.instaUrl.editText?.text.toString()
+            val instaName = binding.instaName.editText?.text.toString()
 
-            update(bio, course, instaUrl)
+            update(bio, course, instaName)
 
             Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid)
                 .set(user).addOnSuccessListener {
-                    Toast.makeText(this, binding.bio.editText?.text.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
                 }
 
             finish()
@@ -81,14 +81,18 @@ class EditProfileActivity : AppCompatActivity() {
         binding.changeDp.setOnClickListener{
             launcher.launch("image/*")
         }
+
+        binding.userImage.setOnClickListener{
+            launcher.launch("image/*")
+        }
     }
 
     //Code to update data in fire store database;
-    private fun update(bio: String, course: String, instaUrl: String) {
+    private fun update(bio: String, course: String, instaName: String) {
         val userDetails = mapOf(
             "bio" to bio,
             "course" to course,
-            "instaUrl" to instaUrl
+            "instaName" to instaName
         )
 
         FirebaseFirestore.getInstance().collection(USER_NODE)

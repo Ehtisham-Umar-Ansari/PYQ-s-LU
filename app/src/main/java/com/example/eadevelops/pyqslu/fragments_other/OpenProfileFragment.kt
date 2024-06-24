@@ -48,10 +48,10 @@ class OpenProfileFragment : Fragment() {
                 binding.course.visibility = View.GONE
                 binding.courseIcon.visibility = View.GONE
             }
-            if(user.instaUrl!= null){
-                binding.insta.text = user.instaUrl
+            if(user.instaName!= null){
+                binding.instaName.text = user.instaName
             }else{
-                binding.insta.visibility = View.GONE
+                binding.instaName.visibility = View.GONE
                 binding.instaIcon.visibility = View.GONE
             }
         }

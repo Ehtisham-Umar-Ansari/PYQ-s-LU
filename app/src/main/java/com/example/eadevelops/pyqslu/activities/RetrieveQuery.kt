@@ -4,7 +4,6 @@ import android.content.ClipData
 import android.os.Bundle
 import android.content.ClipboardManager
 import android.content.Intent
-import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -48,11 +47,9 @@ class RetrievePYQ : AppCompatActivity(), MyPYQItemsAdapter.ClickedItem {
         pdfList = ArrayList()
         adapter = MyPYQItemsAdapter(this, pdfList, this)
         binding.recyclerView.adapter = adapter
-        dataBaseReference = FirebaseDatabase.getInstance().reference.child(PDFs)
+        val from = intent.getStringExtra("from").toString()
 
-        if(!intent.hasExtra("fileName")){
-            binding.searchView.visibility = View.GONE
-        }
+        dataBaseReference = FirebaseDatabase.getInstance().reference.child(PDFs).child(from)
 
         eventListener = dataBaseReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -64,6 +61,20 @@ class RetrievePYQ : AppCompatActivity(), MyPYQItemsAdapter.ClickedItem {
                     }
                 }
                 adapter.notifyDataSetChanged()
+
+                if (intent.hasExtra("fileName")) {
+                    val fileName = intent.getStringExtra("fileName")!!
+                    binding.searchView.setQuery(fileName, true)
+
+                    //Copying to clipboard
+                    val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("FileName", fileName)
+                    clipboard.setPrimaryClip(clip)
+
+                    Toast.makeText(this@RetrievePYQ, "Query Copied", Toast.LENGTH_SHORT).show()
+
+                    searchList(fileName)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -71,35 +82,27 @@ class RetrievePYQ : AppCompatActivity(), MyPYQItemsAdapter.ClickedItem {
             }
         })
 
-        if(intent.hasExtra("fileName")){
-            val fileName = intent.getStringExtra("fileName")!!
-            binding.searchView.setQuery(fileName, true)
+        search()
+    }
 
-            //Copying to clipboard
-            val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("FileName", fileName)
-            clipboard.setPrimaryClip(clip)
+    private fun search(){
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
 
-            Toast.makeText(this, "Text Copied", Toast.LENGTH_SHORT).show()
-
-            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(p0: String?): Boolean {
-                    return false
-                }
-
-                override fun onQueryTextChange(text: String): Boolean {
-                    searchList(text)
-                    return true
-                }
-            })
-        }
+            override fun onQueryTextChange(text: String): Boolean {
+                searchList(text)
+                return true
+            }
+        })
     }
 
     fun searchList(text: String){
         val searchList = ArrayList<PDF>()
         for (i in pdfList){
-            if(i.fileName.contains(text)){
+            if(i.fileName.contains(text, ignoreCase = true)){
                 searchList.add(i)
             }
         }

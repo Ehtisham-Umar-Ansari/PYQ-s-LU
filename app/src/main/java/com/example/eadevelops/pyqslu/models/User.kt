@@ -8,7 +8,7 @@ class User {
     var password : String? = null
     var bio : String? = null
     var course : String? = null
-    var instaUrl : String? = null
+    var instaName : String? = null
 
     constructor()
 
@@ -37,7 +37,7 @@ class User {
         password: String?,
         bio: String?,
         course: String?,
-        instaUrl: String?
+        instaName: String?
     ) {
         this.image = image
         this.name = name
@@ -45,7 +45,7 @@ class User {
         this.password = password
         this.bio = bio
         this.course = course
-        this.instaUrl = instaUrl
+        this.instaName = instaName
     }
 
 }

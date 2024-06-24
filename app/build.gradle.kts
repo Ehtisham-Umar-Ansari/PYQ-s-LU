@@ -73,4 +73,7 @@ dependencies {
     // PDF Viewer
     implementation(libs.android.pdf.viewer)
 
+    // Swipe down to refresh
+    implementation (libs.androidx.swiperefreshlayout)
+
 }

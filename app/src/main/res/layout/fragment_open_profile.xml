@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
-    tools:context=".activities.drawer_activities.MyProfileActivity">
+    tools:context=".fragments_other.OpenProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -82,11 +82,11 @@
             android:layout_height="18dp"
             android:src="@drawable/instagram"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/insta"
-            app:layout_constraintBottom_toBottomOf="@id/insta"/>
+            app:layout_constraintTop_toTopOf="@id/insta_name"
+            app:layout_constraintBottom_toBottomOf="@id/insta_name"/>
 
         <TextView
-            android:id="@+id/insta"
+            android:id="@+id/insta_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/insta"
@@ -111,7 +111,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/insta"
+            app:layout_constraintTop_toBottomOf="@id/insta_name"
             android:layout_marginTop="10dp"
             tools:listitem="@layout/notice_item"/>
 

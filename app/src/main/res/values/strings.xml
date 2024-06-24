@@ -14,6 +14,8 @@
     <string name="login">Login</string>
     <string name="new_user">Don\'t have an account?</string>
     <string name="signup">Signup</string>
+    <string name="verification_text">Haven\'t received verification email yet?</string>
+    <string name="send_again">Send Again</string>
     <string name="view_profile">View Profile</string>
     <string name="nav_open">Open Navigation Drawer</string>
     <string name="nav_close">Close Navigation Drawer</string>
@@ -22,14 +24,14 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="time">Time</string>
     <string name="change_dp">Change profile picture</string>
-    <string name="insta">Instagram Url here</string>
+    <string name="insta">Instagram user name</string>
     <string name="update">Update</string>
     <string name="upload_post">Upload a post</string>
     <string name="upload_notice">Upload a notice</string>
     <string name="pyq">Upload a previous year paper</string>
     <string name="notes">Upload Subject notes</string>
-    <string name="disclaimer">Your post may appear in other\'s feeds and can be seen under the post section and also on your profile page</string>
-    <string name="disclaimer_notice">This notice may appear in other\'s feeds and can be seen under the notice section below and also on your profile page</string>
+    <string name="disclaimer">Your post will appear in other\'s feeds and can be seen under the post section and also on your profile page</string>
+    <string name="disclaimer_notice">This notice will appear in other\'s feeds and can be seen under the notice section and also on your profile page</string>
     <string name="post">Post</string>
     <string name="cancel">Cancel</string>
     <string name="caption">Write a caption</string>
@@ -73,29 +75,29 @@
 
 
     <string-array name="Course">
-        <item>BALLB </item>
-        <item>BBA </item>
-        <item>BCA </item>
-        <item>B Pharma </item>
-        <item>B Tech </item>
-        <item>LLB </item>
-        <item>MBA </item>
+        <item> BALLB </item>
+        <item> BBA </item>
+        <item> BCA </item>
+        <item> B Pharma </item>
+        <item> B Tech </item>
+        <item> LLB </item>
+        <item> MBA </item>
     </string-array>
 
     <string-array name="Branch">
-        <item>Not Applicable </item>
-        <item>A I Engineering </item>
-        <item>Civil Engineering </item>
-        <item>Computer Science Engineering </item>
-        <item>Electrical Engineering </item>
-        <item>Mechanical Engineering </item>
+        <item> Not Applicable </item>
+        <item> A I Engineering </item>
+        <item> Civil Engineering </item>
+        <item> Computer Science Engineering </item>
+        <item> Electrical Engineering </item>
+        <item> Mechanical Engineering </item>
     </string-array>
 
     <string-array name="Type">
-        <item>Mid Sem-1 </item>
-        <item>Mid Sem-2 </item>
-        <item>Make Up Exam </item>
-        <item>End Sem </item>
+        <item> Mid Sem-1 </item>
+        <item> Mid Sem-2 </item>
+        <item> Make Up Exam </item>
+        <item> End Sem </item>
     </string-array>
 
 </resources>

@@ -1,7 +1,6 @@
 package com.example.eadevelops.pyqslu.activities.drawer_activities
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -72,29 +71,21 @@ class MyProfileActivity : AppCompatActivity() {
                 if (user?.bio != null){
                     binding.bio.text = user.bio.toString()
                 }
-                if (user?.course != null){
+
+                if (user?.course == "" || user?.course == null){
+                    binding.course.text = getString(R.string.course)
+                }else{
                     binding.course.text = user.course.toString()
                 }
-                if (user?.instaUrl != null){
-                    binding.insta.text = user.instaUrl.toString()
+
+                if (user?.instaName == "" || user?.instaName == null){
+                    binding.instaName.text = getString(R.string.insta)
+                }else{
+                    binding.instaName.text = user.instaName.toString()
                 }
 
                 Picasso.get().load(user?.image).placeholder(R.drawable.profile_img)
                     .into(binding.userImage)
-
-                binding.email.setOnClickListener {
-                    openWeb(user?.email.toString())
-                }
-                binding.userEmail.setOnClickListener {
-                    openWeb(user?.email.toString())
-                }
-
-                binding.insta.setOnClickListener {
-                    openWeb(user?.instaUrl.toString())
-                }
-                binding.instaIcon.setOnClickListener {
-                    openWeb(user?.instaUrl.toString())
-                }
             }
 
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid)
@@ -117,15 +108,5 @@ class MyProfileActivity : AppCompatActivity() {
 
     private fun openActivity(){
         startActivity(Intent(this, TunnelActivity::class.java))
-    }
-
-    private fun openWeb(url : String){
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        } else {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(browserIntent)
-        }
     }
 }

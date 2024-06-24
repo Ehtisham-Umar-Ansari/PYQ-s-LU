@@ -15,8 +15,6 @@
             android:id="@+id/linearLayoutQues"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
             android:orientation="vertical"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
@@ -141,16 +139,6 @@
                 android:textStyle="italic"/>
 
         </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
