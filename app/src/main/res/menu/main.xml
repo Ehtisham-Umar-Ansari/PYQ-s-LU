@@ -4,5 +4,5 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:iconTint="@color/black"
-        android:title="Coming soon" />
+        android:title="Chats Coming soon" />
 </menu>

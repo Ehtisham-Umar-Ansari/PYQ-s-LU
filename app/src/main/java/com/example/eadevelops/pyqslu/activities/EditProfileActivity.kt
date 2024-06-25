@@ -1,6 +1,7 @@
 package com.example.eadevelops.pyqslu.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,6 +33,7 @@ class EditProfileActivity : AppCompatActivity() {
                 if(it!=null){
                     user.image = it
                     binding.userImage.setImageURI(uri)
+                    binding.progressBar.visibility = View.GONE
                 }
             }
         }
@@ -64,6 +66,8 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.update.setOnClickListener {
 
+            binding.progressBar.visibility = View.VISIBLE
+
             val bio  = binding.bio.editText?.text.toString()
             val course = binding.course.editText?.text.toString()
             val instaName = binding.instaName.editText?.text.toString()
@@ -75,15 +79,18 @@ class EditProfileActivity : AppCompatActivity() {
                     Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
                 }
 
+            binding.progressBar.visibility = View.GONE
             finish()
         }
 
         binding.changeDp.setOnClickListener{
             launcher.launch("image/*")
+            binding.progressBar.visibility = View.VISIBLE
         }
 
         binding.userImage.setOnClickListener{
             launcher.launch("image/*")
+            binding.progressBar.visibility = View.VISIBLE
         }
     }
 

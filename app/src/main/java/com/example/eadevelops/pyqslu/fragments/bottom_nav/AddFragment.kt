@@ -16,10 +16,6 @@ class AddFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding : FragmentAddBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

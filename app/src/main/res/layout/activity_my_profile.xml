@@ -54,8 +54,8 @@
 
             <ImageView
                 android:id="@+id/email"
-                android:layout_width="20dp"
-                android:layout_height="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/user_email"
@@ -74,8 +74,8 @@
 
             <ImageView
                 android:id="@+id/course_icon"
-                android:layout_width="20dp"
-                android:layout_height="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/learning"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/course"
@@ -94,8 +94,8 @@
 
             <ImageView
                 android:id="@+id/insta_icon"
-                android:layout_width="20dp"
-                android:layout_height="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/instagram"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/insta_name"
