@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.eadevelops.pyqslu.adapters.PostItemAdapterOne
 import com.example.eadevelops.pyqslu.databinding.FragmentHomeBinding
 import com.example.eadevelops.pyqslu.models.Post
@@ -32,13 +33,24 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
+        getPost()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            getPost()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+        return binding.root
+    }
+
+    private fun getPost(){
         Firebase.firestore.collection(POST).get().addOnSuccessListener {
             val tempList = ArrayList<Post>()
             postList.clear()
 
             for(i in it.documents){
-                val notice = i.toObject<Post>()!!
-                tempList.add(notice)
+                val post = i.toObject<Post>()!!
+                tempList.add(post)
             }
             postList.addAll(tempList)
             postList.sortBy { it.time }
@@ -47,7 +59,5 @@ class HomeFragment : Fragment() {
         }.addOnFailureListener {
             Toast.makeText(requireContext(), it.localizedMessage?.toString(), Toast.LENGTH_LONG).show()
         }
-
-        return binding.root
     }
 }

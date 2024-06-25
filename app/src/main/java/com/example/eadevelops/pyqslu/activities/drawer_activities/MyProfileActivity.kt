@@ -35,7 +35,7 @@ class MyProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.swipeRefresh)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -61,6 +61,22 @@ class MyProfileActivity : AppCompatActivity() {
             openActivity()
         }
 
+        getUserInfo()
+        getUserFeed()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            getUserInfo()
+            getUserFeed()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+    }
+
+    private fun openActivity(){
+        startActivity(Intent(this, TunnelActivity::class.java))
+    }
+
+    private fun getUserInfo(){
         Firebase.firestore.collection(USER_NODE).document(FirebaseAuth.getInstance().currentUser!!.uid)
             .get().addOnSuccessListener {
 
@@ -87,26 +103,23 @@ class MyProfileActivity : AppCompatActivity() {
                 Picasso.get().load(user?.image).placeholder(R.drawable.profile_img)
                     .into(binding.userImage)
             }
+    }
 
+    private fun getUserFeed(){
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener {
                 if (!it.isEmpty){
                     binding.yourPosts.visibility = View.VISIBLE
                 }
 
-            val tempList = arrayListOf<Post>()
-            for(i in it.documents){
-                val post : Post = i.toObject<Post>()!!
-                tempList.add(post)
-            }
+                val tempList = arrayListOf<Post>()
+                for(i in it.documents){
+                    val post : Post = i.toObject<Post>()!!
+                    tempList.add(post)
+                }
                 postList.addAll(tempList)
                 postList.reverse()
-            adapter.notifyDataSetChanged()
-        }
-
-    }
-
-    private fun openActivity(){
-        startActivity(Intent(this, TunnelActivity::class.java))
+                adapter.notifyDataSetChanged()
+            }
     }
 }

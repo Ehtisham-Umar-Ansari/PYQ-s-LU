@@ -32,6 +32,17 @@ class NoticeFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
+        getNotice()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            getNotice()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+        return binding.root
+    }
+
+    private fun getNotice(){
         Firebase.firestore.collection(NOTICE).get().addOnSuccessListener {
             val tempList = ArrayList<Post>()
             noticeList.clear()
@@ -47,7 +58,5 @@ class NoticeFragment : Fragment() {
         }.addOnFailureListener {
             Toast.makeText(requireContext(), it.localizedMessage?.toString(), Toast.LENGTH_LONG).show()
         }
-
-        return binding.root
     }
 }
