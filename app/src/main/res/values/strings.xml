@@ -30,8 +30,10 @@
     <string name="upload_notice">Upload a notice</string>
     <string name="pyq">Upload a previous year paper</string>
     <string name="notes">Upload Subject notes</string>
-    <string name="disclaimer">Your post will appear in other\'s feeds and can be seen under the post section and also on your profile page</string>
-    <string name="disclaimer_notice">This notice will appear in other\'s feeds and can be seen under the notice section and also on your profile page</string>
+    <string name="disclaimer">Your post will appear in other\'s feeds and can be seen under the post section along with your profile section\n\n
+    <b>NOTE:</b> Upload an image close to 1:1 ratio as larger images might get cropped when posted.</string>
+    <string name="disclaimer_notice">This notice will appear in other\'s feeds and can be seen under the notice section and also on your profile section\n\n
+    <b>NOTE:</b> Upload an image close to 1:1 ratio as larger images might get cropped when posted.</string>
     <string name="post">Post</string>
     <string name="cancel">Cancel</string>
     <string name="caption">Write a caption</string>

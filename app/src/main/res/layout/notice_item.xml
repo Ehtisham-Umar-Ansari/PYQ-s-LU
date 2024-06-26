@@ -70,8 +70,8 @@
         <ImageView
             android:id="@+id/posted_image"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_gravity="center"
+            android:layout_height="440dp"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

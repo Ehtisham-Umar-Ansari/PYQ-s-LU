@@ -19,9 +19,6 @@ class MyPYQItemsAdapter(private val context : Context, private var pdfList : Lis
     }
 
     override fun getItemCount(): Int {
-        if(pdfList.isEmpty()){
-            Toast.makeText(context, "Nothing Found", Toast.LENGTH_SHORT).show()
-        }
         return pdfList.size
     }
 
@@ -33,6 +30,9 @@ class MyPYQItemsAdapter(private val context : Context, private var pdfList : Lis
     }
 
     fun searchList(searchList : List<PDF>){
+        if(searchList.isEmpty()){
+            Toast.makeText(context, "Nothing Found", Toast.LENGTH_SHORT).show()
+        }
         pdfList = searchList
         notifyDataSetChanged()
     }

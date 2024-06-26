@@ -9,16 +9,15 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/parent_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/parent_layout">
+            android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_image"
@@ -65,20 +64,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/user_image" />
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/posted_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/caption"
+            android:layout_width="match_parent"
+            android:layout_height="440dp"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -87,18 +79,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textSize="15sp"
-            android:text="This is a temp post"
-            app:layout_constraintTop_toBottomOf="@id/posted_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:text="This is a temp post"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:orientation="horizontal"
-            android:layout_weight="10"
-            app:layout_constraintTop_toBottomOf="@id/caption">
+            android:layout_weight="10">
 
             <ImageView
                 android:id="@+id/share"
@@ -109,6 +97,6 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
